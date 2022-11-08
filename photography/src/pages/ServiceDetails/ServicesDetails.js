@@ -1,25 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import {  Link, useLoaderData } from 'react-router-dom';
 
-const Card = ({service}) => {
-
-  return (
-    <div className="max-w-xs p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50">
+const ServicesDetails = () => {
+    const service=useLoaderData()
+    console.log(service)
+    return (
+        <div className="p-6 rounded-md w-3/4 h-full mx-auto shadow-md dark:bg-gray-900 dark:text-gray-50">
       <img
         src={service.img}
         alt=""
-        className="object-cover object-center w-full rounded-md h-72 dark:bg-gray-500"
+        className="object-cover object-center w-full rounded-md h-full dark:bg-gray-500"
       />
       <div className="mt-6 mb-2">
         <h2 className="text-xl font-semibold tracking-wide">
           {service.title}
-        <span className="block text-xs my-2 font-xl tracking-widest uppercase dark:text-violet-400">
+        <span className="block text-xs font-xl tracking-widest uppercase dark:text-violet-400">
           ${service.price?service.price:service.time}
         </span>
         </h2>
       </div>
       <p className="dark:text-gray-100">
-        {service.disc.slice(0,100)}...
+        {service.disc}
       </p>
       <button
           type="button"
@@ -29,7 +30,7 @@ const Card = ({service}) => {
         </button>
 
     </div>
-  );
+    );
 };
 
-export default Card;
+export default ServicesDetails;

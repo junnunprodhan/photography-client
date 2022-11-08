@@ -1,12 +1,18 @@
 import React from 'react';
+import HappyClient from '../../HappyClient/HappyClient';
 import Header from '../../Header/Header';
-import Services from '../../services/Services';
+import PhotoGallery from '../../PhotoGallery/PhotoGallery';
+import Service from '../../Service/Service';
+
 
 const Home = () => {
     return (
         <div>
             <Header></Header>
-            <Services></Services>
+            <Service></Service>
+            <h1 className='text-center text-5xl mt-10'>Photo Gallery</h1>
+            <PhotoGallery></PhotoGallery>
+            <HappyClient></HappyClient>
         </div>
     );
 };

@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo2 from '../../asset/logo2.png'
 
 const Header = () => {
     return (
-        <div className="bg-purple-700 mt-10">
+        <div className="bg-purple-700 w-3/4 mx-auto mt-10">
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div className="max-w-xl sm:mx-auto lg:max-w-2xl">
           <div className="flex flex-col mb-16 sm:text-center sm:mb-0">
@@ -46,12 +47,12 @@ const Header = () => {
               </p>
             </div>
             <div>
-              <a
-                href="/"
+              <Link
+                to="/login"
                 className="inline-flex items-center justify-center h-12 px-6 font-semibold tracking-wide text-white transition duration-200 rounded shadow-md hover:text-purple-900 bg-teal-accent-400 hover:bg-purple-400 focus:shadow-outline focus:outline-none"
               >
                 Get started
-              </a>
+              </Link>
             </div>
           </div>
         </div>

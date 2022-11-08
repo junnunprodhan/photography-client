@@ -14,23 +14,23 @@ const Navbar = () => {
         <div className="bg-purple-700">
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
-          <a
-            href="/"
-            aria-label="Company"
-            title="Company"
+          <Link
+            to="/"
+            aria-label="photography"
+            title="photography"
             className="inline-flex items-center"
           >
             <img className='h-12' src={logo2} alt="" />
             <span className="ml-2 text-xl font-bold tracking-wide text-gray-900 uppercase">
               Photography
             </span>
-          </a>
+          </Link>
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
               <Link
                 to="/services"
-                aria-label="Product pricing"
-                title="Product pricing"
+                aria-label="services"
+                title="services"
                 className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
               >
                 Services
@@ -39,8 +39,8 @@ const Navbar = () => {
             <li>
               <Link
                 to="/blog"
-                aria-label="About us"
-                title="About us"
+                aria-label="Blog"
+                title="Blog"
                 className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
               >
                 Blog
@@ -51,6 +51,22 @@ const Navbar = () => {
             {" "}
             {user?.uid ? (
               <>
+              <Link
+                to="/myreviews"
+                aria-label="myreviews"
+                title="my reviews"
+                className="font-medium tracking-wide text-gray-900 m-4 transition-colors duration-200 hover:text-teal-accent-400"
+              >
+                My Reviews
+              </Link>
+              <Link
+                to="/addservice"
+                aria-label="addservice"
+                title="add service"
+                className="font-medium tracking-wide text-gray-900 m-4 transition-colors duration-200 hover:text-teal-accent-400"
+              >
+                Add Service
+              </Link>
                 <span>
                   <img
                     className="me-2 rounded-full"
@@ -215,14 +231,14 @@ const Navbar = () => {
                         </a>
                       </li>
                       <li>
-                        <a
-                          href="/"
+                        <Link
+                          to="/register"
                           className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                           aria-label="Sign up"
-                          title="Sign up"
+                          title="register"
                         >
-                          Sign up
-                        </a>
+                          Register
+                        </Link>
                       </li>
                     </ul>
                   </nav>
