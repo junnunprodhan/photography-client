@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo2 from '../../asset/logo2.png'
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { user, logout } = useContext(AuthContext);
+    const handleLogout = () => {
+      logout();
+    };
+  
     return (
         <div className="bg-purple-700">
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -41,30 +47,62 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          <ul className="flex items-center hidden space-x-8 lg:flex">
-            <li>
-              <Link
-                to="/register"
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-gray-900 transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-gray-accent-400 focus:shadow-outline focus:outline-none"
-                aria-label="Sign up"
-                title="Sign up"
-              >
-                Register
-              </Link>
-            </li>
-          </ul>
-          <ul className="flex items-center hidden space-x-8 lg:flex">
-            <li>
-              <Link
-                to="/login"
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-gray-900 transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-gray-accent-400 focus:shadow-outline focus:outline-none"
-                aria-label="Sign up"
-                title="Sign up"
-              >
-                Login
-              </Link>
-            </li>
-          </ul>
+          <div className="flex">
+            {" "}
+            {user?.uid ? (
+              <>
+                <span>
+                  <img
+                    className="me-2 rounded-full"
+                    style={{ height: "50px", width: "50px" }}
+                    src={user?.photoURL}
+                    title={user?.displayName}
+                    alt=""
+                  />
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="inline-flex items-center m-2 bg-gray-300 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+                >
+                  Logout
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    className="w-4 h-4 ml-1"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+              </>
+            ) : (
+              <ul className="flex items-center hidden space-x-8 lg:flex">
+                <li>
+                  <Link
+                    to="/login"
+                    aria-label="Sign in"
+                    title="Sign in"
+                    className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                  >
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/register"
+                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                    aria-label="Sign up"
+                    title="Sign up"
+                  >
+                    Register
+                  </Link>
+                </li>
+              </ul>
+            )}
+          </div>
           <div className="lg:hidden">
             <button
               aria-label="Open Menu"

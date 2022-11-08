@@ -1,9 +1,14 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Login = () => {
   const { signin,signInWithGoogle} = useContext(AuthContext)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/'
+
+
     const handleLogin =event =>{
         event.preventDefault()
         const email = event.target.email.value
@@ -19,7 +24,7 @@ const Login = () => {
 
     const handleGoogleSignin = () => {
       signInWithGoogle().then(result => {
-       
+        navigate(from, { replace: true })
       })
     }
 

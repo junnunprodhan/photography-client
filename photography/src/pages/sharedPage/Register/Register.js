@@ -19,6 +19,7 @@ const Register = () => {
       alert('register successfully')
       form.reset()
     })
+  
   }
 
 
