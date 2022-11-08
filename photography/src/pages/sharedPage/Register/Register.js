@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Register = () => {
+  const {createUser}=useContext(AuthContext)
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    const form =e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name,email,password)
+
+    createUser(email,password)
+    .then(result=>{
+      const user=result.user;
+      console.log(user)
+      alert('register successfully')
+      form.reset()
+    })
+  }
+
+
     return (
         <div className='flex justify-center items-center pt-8 m-12'>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
@@ -10,7 +30,7 @@ const Register = () => {
           <p className='text-sm text-gray-400'>Create a new account</p>
         </div>
         <form
-
+          onSubmit={handleSubmit}
           noValidate=''
           action=''
           className='space-y-12 ng-untouched ng-pristine ng-valid'
@@ -29,19 +49,7 @@ const Register = () => {
                 data-temp-mail-org='0'
               />
             </div>
-            <div>
-              <label htmlFor='photoURL' className='block mb-2 text-sm'>
-                photoURL
-              </label>
-              <input
-                type='text'
-                name='photoURL'
-                id='photoURL'
-                placeholder='Enter Your photoURL Here'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
-                data-temp-mail-org='0'
-              />
-            </div>
+            
             <div>
               <label htmlFor='email' className='block mb-2 text-sm'>
                 Email address
@@ -118,7 +126,7 @@ const Register = () => {
           <Link to='/login' className='hover:underline text-gray-600'>
             Log In
           </Link>
-          .
+          
         </p>
       </div>
     </div>
