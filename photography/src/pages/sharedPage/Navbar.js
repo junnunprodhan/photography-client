@@ -20,17 +20,15 @@ const Navbar = () => {
             </span>
           </a>
           <ul className="flex items-center hidden space-x-8 lg:flex">
-           
-           
             <li>
-              <a
-                href="/"
+              <Link
+                to="/services"
                 aria-label="Product pricing"
                 title="Product pricing"
                 className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
               >
-                Pricing
-              </a>
+                Services
+              </Link>
             </li>
             <li>
               <Link
@@ -45,14 +43,26 @@ const Navbar = () => {
           </ul>
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
-              <a
-                href="/"
+              <Link
+                to="/register"
                 className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-gray-900 transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-gray-accent-400 focus:shadow-outline focus:outline-none"
                 aria-label="Sign up"
                 title="Sign up"
               >
-                Sign up
-              </a>
+                Register
+              </Link>
+            </li>
+          </ul>
+          <ul className="flex items-center hidden space-x-8 lg:flex">
+            <li>
+              <Link
+                href="/login"
+                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-gray-900 transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-gray-accent-400 focus:shadow-outline focus:outline-none"
+                aria-label="Sign up"
+                title="Sign up"
+              >
+                Login
+              </Link>
             </li>
           </ul>
           <div className="lg:hidden">
