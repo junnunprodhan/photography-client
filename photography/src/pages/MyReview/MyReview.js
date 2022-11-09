@@ -11,7 +11,7 @@ const MyReview = () => {
     const[review,setReview]=useState([])
 
 useEffect(()=>{
-    fetch(`http://localhost:5000/myreview/${email}`)
+    fetch(`https://photography-server.vercel.app/myreview/${email}`)
     .then (res=>res.json())
     .then (data=>setReview(data))
 },[])

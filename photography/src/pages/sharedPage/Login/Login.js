@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Login = () => {
-  const { signin,signInWithGoogle} = useContext(AuthContext)
+  const { signin,signInWithGoogle,signInWithGithub} = useContext(AuthContext)
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state?.from?.pathname || '/'
@@ -27,6 +27,17 @@ const Login = () => {
         navigate(from, { replace: true })
       })
     }
+
+    const handleGithubSingIn = () => {
+      signInWithGithub().then(result => {
+        const user=result.user;
+        console.log(user)
+        navigate(from, { replace: true })
+  
+      })
+      .catch(error=>console.error(error))
+    }
+  
 
 
     return (
@@ -115,7 +126,8 @@ const Login = () => {
             </svg>
           </button>
          
-          <button 
+          <button
+          onClick={handleGithubSingIn} 
            aria-label='Log in with GitHub' className='p-3 rounded-sm'>
             <svg
               xmlns='http://www.w3.org/2000/svg'

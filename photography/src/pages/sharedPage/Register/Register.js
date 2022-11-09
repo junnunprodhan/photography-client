@@ -1,11 +1,15 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import useTitle from '../../../hooks/useTitle';
 
 const Register = () => {
-  const {createUser}=useContext(AuthContext)
+  const {createUser,signInWithGithub,signInWithGoogle}=useContext(AuthContext)
   useTitle('register')
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/'
+
   const handleSubmit=(e)=>{
     e.preventDefault()
     const form =e.target;
@@ -22,6 +26,23 @@ const Register = () => {
       form.reset()
     })
   
+  }
+
+  const handleGoogleSignin = () => {
+    signInWithGoogle().then(result => {
+      navigate(from, { replace: true })
+    })
+  }
+
+
+  const handleGithubSingIn = () => {
+    signInWithGithub().then(result => {
+      const user=result.user;
+      console.log(user)
+      Navigate(from, { replace: true })
+
+    })
+    .catch(error=>console.error(error))
   }
 
 
@@ -101,7 +122,7 @@ const Register = () => {
         </div>
         <div className='flex justify-center space-x-4'>
           <button
-          
+          onClick={signInWithGoogle}
             aria-label='Log in with Google'
             className='p-3 rounded-sm'
           >
@@ -114,7 +135,9 @@ const Register = () => {
             </svg>
           </button>
          
-          <button aria-label='Log in with GitHub' className='p-3 rounded-sm'>
+          <button
+          onClick={handleGithubSingIn}
+           aria-label='Log in with GitHub' className='p-3 rounded-sm'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 32 32'

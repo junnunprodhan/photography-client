@@ -8,7 +8,7 @@ const AddProduct = () => {
     const handleSubmit=event=>{
         event.preventDefault();
         const form= event.target;
-        fetch('http://localhost:5000/services',{
+        fetch('https://photography-server.vercel.app/services',{
             method:'POST',
             headers:{
                 'content-type':'application/json'

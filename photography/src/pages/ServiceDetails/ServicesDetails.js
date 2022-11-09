@@ -10,7 +10,7 @@ const ServicesDetails = () => {
   const id = service._id;
   console.log(id);
   useEffect(() => {
-    fetch(`http://localhost:5000/review/${service._id}`)
+    fetch(`https://photography-server.vercel.app/review/${service._id}`)
       .then((res) => res.json())
       .then((data) => setShowRiviews(data));
   }, []);
@@ -34,7 +34,7 @@ const ServicesDetails = () => {
       date,
       serviceId: service._id,
     };
-    fetch("http://localhost:5000/review", {
+    fetch("https://photography-server.vercel.app/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -107,7 +107,7 @@ const ServicesDetails = () => {
       </>
     }
 
-      <div className="w-1/4 mx-auto">
+      <div className="w-3/4 gap-2 mx-auto grid grid-col md:grid-cols-2 lg:grid-cols-3">
         <>
           {showReviews?.map((showReview) => (
             <ServiceReview
