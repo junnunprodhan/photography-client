@@ -9,6 +9,7 @@ import ErrorPage from "../pages/sharedPage/ErrorPage/ErrorPage";
 import Home from "../pages/sharedPage/Home/Home";
 import Login from "../pages/sharedPage/Login/Login";
 import Register from "../pages/sharedPage/Register/Register";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 export const routes=createBrowserRouter([
     {
@@ -18,6 +19,11 @@ export const routes=createBrowserRouter([
         children: [
             {
                 path: '/',
+                element: <Home></Home>,
+                
+            },
+            {
+                path: '/home',
                 element: <Home></Home>,
                 
             },
@@ -32,7 +38,7 @@ export const routes=createBrowserRouter([
             },
             {
                 path: '/myreviews',
-                element: <MyReview></MyReview>
+                element:<PrivateRoute><MyReview></MyReview></PrivateRoute> 
             },
             {
                 path: '/addservice',

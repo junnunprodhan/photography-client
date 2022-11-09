@@ -1,4 +1,5 @@
 import React from 'react';
+import useTitle from '../../../hooks/useTitle';
 import HappyClient from '../../HappyClient/HappyClient';
 import Header from '../../Header/Header';
 import PhotoGallery from '../../PhotoGallery/PhotoGallery';
@@ -6,6 +7,7 @@ import Service from '../../Service/Service';
 
 
 const Home = () => {
+    useTitle('home')
     return (
         <div>
             <Header></Header>

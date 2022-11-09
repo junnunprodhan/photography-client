@@ -1,28 +1,44 @@
-import React, { useState } from "react";
+import React, { useContext,} from "react";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const ServicesDetails = () => {
   const service = useLoaderData();
-  const [reviews,setReviews]=useState([])
+  const {user}=useContext(AuthContext);
+
+
+
 const handleSubmit = event =>{
   event.preventDefault()
   const form = event.target;
   const review= form.review.value;
   const rating = form.rating.value;
   console.log(review,rating)
+  const date = new Date().toLocaleDateString();
 
-  fetch('https://photography-server.vercel.app/review',{
+  const reviews={
+    name:user?.displayName,
+    email:user.email,
+    img:user?.photoURL,
+    review,
+    rating,
+    date,
+    serviceId:service._id
+
+  }
+  fetch('http://localhost:5000/review',{
     method:'POST',
     headers:{
       'content-type':'application/json'
     },
-    body:JSON.stringify(review)
+    body:JSON.stringify(reviews)
   })
   .then (res=>res.json())
   .then(data=>{
-    setReviews([data,...reviews])
-    event.target.reset()
+    // event.target.reset()
+    console.log(data)
   })
+  .catch(err=>console.error(err))
 
 }
 
@@ -46,11 +62,13 @@ const handleSubmit = event =>{
         <p className="dark:text-gray-100">{service.disc}</p>
       </div>
 
-      <div> 
+      <div className="p-6 rounded-md w-full md:w-1/4 h-full mt-10 mx-auto shadow-md dark:bg-gray-900 dark:text-gray-50"> 
       <form onSubmit={handleSubmit}>
-      <input type="text" placeholder="reviews" name="review" className="input input-bordered input-primary w-full max-w-xs" />
-      <input type="text" placeholder="rating" name="rating" className="input input-bordered input-primary w-full max-w-xs" />
-      <button type="submit">add review</button>
+      <input type="text" placeholder="your reviews" name="review" className="input input-bordered input-primary mb-4 w-full max-w-xs" required />
+      <br />
+      <input type="text" placeholder="rating" name="rating" className="input input-bordered input-primary w-full max-w-xs" required/>
+      <br />
+      <button  className="flex items-center justify-center w-full p-3 mt-4 font-semibold tracking-wide rounded-md bg-gray-900 text-white" type="submit">add review</button>
       </form>
       </div>
 
