@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Card from "../card/Card";
 
 const Services = () => {
@@ -18,13 +17,6 @@ const Services = () => {
         <Card service={service} key={service._id}></Card>
       ))}
      </div>
-
-      <button
-        type="button"
-        className="flex items-center justify-center w-1/4 mx-auto p-3 mt-4 font-semibold tracking-wide rounded-md bg-gray-900 text-white"
-      >
-        <Link to="/services">Sell All Service</Link>
-      </button>
     </div>
   );
 };
