@@ -27,6 +27,8 @@ const ServicesDetails = () => {
       name: user?.displayName,
       email: user?.email,
       img: user?.photoURL,
+      service:service?.title,
+      serviceImg:service?.img,
       review,
       rating,
       date,

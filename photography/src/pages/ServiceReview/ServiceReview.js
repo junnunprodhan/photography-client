@@ -1,20 +1,20 @@
 import React from 'react';
 
 const ServiceReview = ({showReview}) => {
-    const{review,rating,date,name,img}=showReview
+    const{review,rating,date}=showReview
     return (
         <div className="container flex flex-col mt-10 w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-900 dark:bg-gray-900 dark:text-gray-100">
         <div className="flex justify-between p-4">
           <div className="flex space-x-4">
             <div>
               <img
-                src={img}
+                src={showReview.img ? showReview.img :'https://t3.ftcdn.net/jpg/05/14/18/46/360_F_514184651_W5rVCabKKRH6H3mVb62jYWfuXio8c8si.jpg'}
                 alt=""
                 className="object-cover w-12 h-12 rounded-full dark:bg-gray-500"
               />
             </div>
             <div>
-              <h4 className="font-bold">{name}</h4>
+              <h4 className="font-bold">{showReview.name ? showReview.name : showReview.email}</h4>
               <span className="text-xs dark:text-gray-400">{date}</span>
             </div>
           </div>
