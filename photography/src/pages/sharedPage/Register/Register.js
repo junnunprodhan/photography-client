@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import useTitle from '../../../hooks/useTitle';
 
@@ -22,7 +23,7 @@ const Register = () => {
     .then(result=>{
       const user=result.user;
       console.log(user)
-      alert('register successfully')
+      toast.success('register successfully')
       form.reset()
     })
   

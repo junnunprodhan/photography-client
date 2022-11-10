@@ -9,6 +9,7 @@ import ErrorPage from "../pages/sharedPage/ErrorPage/ErrorPage";
 import Home from "../pages/sharedPage/Home/Home";
 import Login from "../pages/sharedPage/Login/Login";
 import Register from "../pages/sharedPage/Register/Register";
+import UpdateReview from "../pages/UpfateReview/UpdateReview";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 export const routes=createBrowserRouter([
@@ -47,6 +48,11 @@ export const routes=createBrowserRouter([
             {
                 path:'/register',
                 element: <Register></Register>
+            },
+            {
+                path:'/update/:id',
+                element:<UpdateReview></UpdateReview>,
+                loader:({params})=>fetch(`https://photography-server.vercel.app/update/${params.id}`)
             },
            
             {

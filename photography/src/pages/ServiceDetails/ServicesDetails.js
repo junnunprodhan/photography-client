@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider";
 import ServiceReview from "../ServiceReview/ServiceReview";
 
@@ -8,20 +9,20 @@ const ServicesDetails = () => {
   const { user } = useContext(AuthContext);
   const [showReviews, setShowRiviews] = useState([]);
   const id = service._id;
-  console.log(id);
   useEffect(() => {
     fetch(`https://photography-server.vercel.app/review/${service._id}`)
       .then((res) => res.json())
       .then((data) => setShowRiviews(data));
-  }, []);
+  }, [showReviews,id]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const review = form.review.value;
     const rating = form.rating.value;
-    console.log(review, rating);
+    
     const date = new Date().toLocaleDateString();
+    toast.success('review added successfully')
 
     const reviews = {
       name: user?.displayName,
@@ -43,8 +44,7 @@ const ServicesDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // event.target.reset()
-        console.log(data);
+        event.target.reset()
       })
       .catch((err) => console.error(err));
   };

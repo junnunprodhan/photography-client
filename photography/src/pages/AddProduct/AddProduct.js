@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import useTitle from '../../hooks/useTitle';
 
 const AddProduct = () => {
@@ -18,6 +19,7 @@ const AddProduct = () => {
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
+            toast.success('Service added successfully')
             form.reset()
         })
     }
@@ -28,6 +30,7 @@ const AddProduct = () => {
         const newUser={...addService};
         newUser[FieldName]=FieldValue;
         setAddService(newUser);
+        
 
     }
 
