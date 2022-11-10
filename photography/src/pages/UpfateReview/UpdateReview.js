@@ -37,14 +37,14 @@ const UpdateReview = () => {
   };
 
   return (
-    <div>
+    <div className="w-2/4 mx-auto mt-10 shadow-md rounded-md p-10">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="your reviews"
           name="review"
           defaultValue={review}
-          className="input input-bordered input-primary mb-4 w-full max-w-xs"
+          className="input input-bordered input-primary mb-4 w-full "
           required
         />
         <br />
@@ -53,7 +53,7 @@ const UpdateReview = () => {
           placeholder="rating"
           name="rating"
           defaultValue={rating}
-          className="input input-bordered input-primary w-full max-w-xs"
+          className="input input-bordered input-primary w-full"
           required
         />
         <br />
@@ -61,7 +61,7 @@ const UpdateReview = () => {
           className="flex items-center justify-center w-full p-3 mt-4 font-semibold tracking-wide rounded-md bg-gray-900 text-white"
           type="submit"
         >
-          add review
+          Add review
         </button>
       </form>
     </div>
