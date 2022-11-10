@@ -1,17 +1,17 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
-import logo2 from '../../asset/logo2.png'
-import { AuthContext } from '../../contexts/AuthProvider';
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import logo2 from "../../asset/logo2.png";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Navbar = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { user, logout } = useContext(AuthContext);
-    const handleLogout = () => {
-      logout();
-    };
-  
-    return (
-        <div className="bg-purple-700">
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, logout } = useContext(AuthContext);
+  const handleLogout = () => {
+    logout();
+  };
+
+  return (
+    <div className="bg-purple-700">
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
           <Link
@@ -20,7 +20,7 @@ const Navbar = () => {
             title="photography"
             className="inline-flex items-center"
           >
-            <img className='h-12' src={logo2} alt="" />
+            <img className="h-12" src={logo2} alt="" />
             <span className="ml-2 text-xl font-bold tracking-wide text-gray-900 uppercase">
               Photography
             </span>
@@ -56,8 +56,80 @@ const Navbar = () => {
                 Blog
               </Link>
             </li>
+            <div className="flex">
+              {" "}
+              {user?.uid ? (
+                <>
+                  <Link
+                    to="/myreviews"
+                    aria-label="myreviews"
+                    title="my reviews"
+                    className="font-medium tracking-wide text-gray-900 m-4 transition-colors duration-200 hover:text-teal-accent-400"
+                  >
+                    My Reviews
+                  </Link>
+                  <Link
+                    to="/addservice"
+                    aria-label="addservice"
+                    title="add service"
+                    className="font-medium tracking-wide text-gray-900 m-4 transition-colors duration-200 hover:text-teal-accent-400"
+                  >
+                    Add Service
+                  </Link>
+                  <span>
+                    <img
+                      className="me-2 rounded-full"
+                      style={{ height: "50px", width: "50px" }}
+                      src={user?.photoURL}
+                      title={user?.displayName}
+                      alt=""
+                    />
+                  </span>
+                  <button
+                    onClick={handleLogout}
+                    className="inline-flex items-center m-2 bg-gray-300 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+                  >
+                    Logout
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      className="w-4 h-4 ml-1"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                  </button>
+                </>
+              ) : (
+                <ul className="flex items-center hidden space-x-8 lg:flex">
+                  <li>
+                    <Link
+                      to="/login"
+                      aria-label="Sign in"
+                      title="Sign in"
+                      className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                    >
+                      Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/register"
+                      className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                      aria-label="Sign up"
+                      title="Sign up"
+                    >
+                      Register
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </div>
           </ul>
-          <div className="flex">
+          {/* <div className="flex">
             {" "}
             {user?.uid ? (
               <>
@@ -128,7 +200,7 @@ const Navbar = () => {
                 </li>
               </ul>
             )}
-          </div>
+          </div> */}
           <div className="lg:hidden">
             <button
               aria-label="Open Menu"
@@ -159,26 +231,12 @@ const Navbar = () => {
                       <a
                         href="/"
                         aria-label="Company"
-                        title="Company"
+                        title="photography"
                         className="inline-flex items-center"
                       >
-                        <svg
-                          className="w-8 text-deep-purple-accent-400"
-                          viewBox="0 0 24 24"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeMiterlimit="10"
-                          stroke="currentColor"
-                          fill="none"
-                        >
-                          <rect x="3" y="1" width="7" height="12" />
-                          <rect x="3" y="17" width="7" height="6" />
-                          <rect x="14" y="1" width="7" height="6" />
-                          <rect x="14" y="11" width="7" height="12" />
-                        </svg>
+                        <img src={logo2} alt="" />
                         <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                          Company
+                          photography
                         </span>
                       </a>
                     </div>
@@ -201,46 +259,137 @@ const Navbar = () => {
                   <nav>
                     <ul className="space-y-4">
                       <li>
-                        <a
-                          href="/"
+                        <Link
+                          to="/"
                           aria-label="Our product"
                           title="Our product"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
-                          Product
-                        </a>
+                          Home
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href="/"
+                        <Link
+                          to="/services"
                           aria-label="Our product"
                           title="Our product"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
-                          Features
-                        </a>
+                          Services
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href="/"
+                        <Link
+                          to="/blog"
                           aria-label="Product pricing"
                           title="Product pricing"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
-                          Pricing
-                        </a>
+                          Blog
+                        </Link>
+                        <ul className="flex items-center hidden space-x-8 lg:flex">
+                            <li>
+                              <Link
+                                to="/login"
+                                aria-label="Sign in"
+                                title="Sign in"
+                                className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                              >
+                                Login
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                to="/register"
+                                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                                aria-label="Sign up"
+                                title="Sign up"
+                              >
+                                Register
+                              </Link>
+                            </li>
+
+
+                            
+                          </ul>
                       </li>
-                      <li>
-                        <a
-                          href="/"
-                          aria-label="About us"
-                          title="About us"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                        >
-                          About us
-                        </a>
-                      </li>
-                      <li>
+
+                      <>
+                        {" "}
+                        {user?.uid ? (
+                          <>
+                            <Link
+                              to="/myreviews"
+                              aria-label="myreviews"
+                              title="my reviews"
+                              className="font-medium tracking-wide text-gray-900 m-4 transition-colors duration-200 hover:text-teal-accent-400"
+                            >
+                              My Reviews
+                            </Link>
+                            <Link
+                              to="/addservice"
+                              aria-label="addservice"
+                              title="add service"
+                              className="font-medium tracking-wide text-gray-900 m-4 transition-colors duration-200 hover:text-teal-accent-400"
+                            >
+                              Add Service
+                            </Link>
+                            <span>
+                              <img
+                                className="me-2 rounded-full"
+                                style={{ height: "50px", width: "50px" }}
+                                src={user?.photoURL}
+                                title={user?.displayName}
+                                alt=""
+                              />
+                            </span>
+                            <button
+                              onClick={handleLogout}
+                              className="inline-flex items-center m-2 bg-gray-300 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+                            >
+                              Logout
+                              <svg
+                                fill="none"
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                className="w-4 h-4 ml-1"
+                                viewBox="0 0 24 24"
+                              >
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                              </svg>
+                            </button>
+                          </>
+                        ) : (
+                          <ul className="flex items-center hidden space-x-8 lg:flex">
+                            <li>
+                              <Link
+                                to="/login"
+                                aria-label="Sign in"
+                                title="Sign in"
+                                className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                              >
+                                Login
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                to="/register"
+                                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                                aria-label="Sign up"
+                                title="Sign up"
+                              >
+                                Register
+                              </Link>
+                            </li>
+
+
+                            
+                          </ul>
+                        )}
+                      </>
+                      {/* <li>
                         <Link
                           to="/register"
                           className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
@@ -249,7 +398,7 @@ const Navbar = () => {
                         >
                           Register
                         </Link>
-                      </li>
+                      </li> */}
                     </ul>
                   </nav>
                 </div>
@@ -259,7 +408,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Navbar;

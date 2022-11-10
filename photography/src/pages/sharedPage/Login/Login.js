@@ -21,7 +21,7 @@ const Login = () => {
           console.log(result.user)
           navigate(from,{replace:true})
         })
-        .catch(error => alert.error(error.message))
+        .catch(error => console.error(error.message))
     }
 
     const handleGoogleSignin = () => {
