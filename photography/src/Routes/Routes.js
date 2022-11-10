@@ -43,7 +43,7 @@ export const routes=createBrowserRouter([
             },
             {
                 path: '/addservice',
-                element: <AddProduct></AddProduct>
+                element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
             },
             {
                 path:'/register',

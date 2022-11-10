@@ -1,28 +1,9 @@
 import React, { useState } from 'react';
-import { toast } from 'react-toastify';
 
-const SingleReview = ({r}) => {
+
+const SingleReview = ({r,handleDelete}) => {
     const {date,service,serviceImg,review,rating,}=r
-    const [displayReview,setDisplayReview]=useState([r])
-
-    
-    const handleDelete = id=>{
-        const agree =window.confirm('you want to delete')
-        if(agree){
-            fetch(`https://photography-server.vercel.app/myreview/${r._id}`,{
-                method:'DELETE'
-            })
-            .then(res=>res.json())
-            .then (data=>{
-                if(data.deletedCount > 0){
-                    
-                    // const remainingReview =displayReview.filter(rev =>rev._id !== r._id)
-                    // setDisplayReview(remainingReview)
-                    toast.success('delete successfully')
-                }
-            })
-        }
-    }
+   
 
 
     const handleUpdate =id=>{

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 import SingleReview from "../singleReview/SingleReview";
@@ -15,7 +16,23 @@ const MyReview = () => {
       .then((res) => res.json())
       .then((data) => setReview(data));
       
-  }, []);
+  }, [user?.email]);
+  const handleDelete = id=>{
+    const agree =window.confirm('you want to delete')
+    if(agree){
+        fetch(`https://photography-server.vercel.app/myreview/${id}`,{
+            method:'DELETE'
+        })
+        .then(res=>res.json())
+        .then (data=>{
+            if(data.deletedCount > 0){
+              const remaining = review.filter(r => r._id !== id);
+              setReview(remaining);
+                toast.success('delete successfully')
+            }
+        })
+    }
+}
 
   return (
     <div className="my-10 w-3/4 mx-auto">
@@ -45,7 +62,7 @@ const MyReview = () => {
                 </thead>
                 <tbody>
                   {review.map((r) => (
-                    <SingleReview key={r._id} r={r}></SingleReview>
+                    <SingleReview key={r._id} handleDelete={handleDelete} r={r}></SingleReview>
                   ))}
                 </tbody>
               </table>
